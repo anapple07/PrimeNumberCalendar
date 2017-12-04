@@ -1,0 +1,12 @@
+html {
+    margin:10px 10%;
+}
+
+#pager {
+    float:right;
+    margin-top:10px;
+}
+
+.prime {
+    background-color:#ffd060;
+}
