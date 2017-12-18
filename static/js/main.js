@@ -1,14 +1,15 @@
-$(window).load(function() {
+//$(window).load(function() {
+$(function(){
     $('#calendar').fullCalendar();
+    addCss();
 
-    $('#my-next-button').click(function() {
-        $('#calendar').fullCalendar('next');
+    $("button").click(function() {
+        addCss();
     });
 
-    $('#my-prev-button').click(function() {
-        $('#calendar').fullCalendar('prev');
-    });
+});
 
+function addCss() {
     $("td .fc-day").each(function(i) {
         var date = $(this).data("date");
         var prime_flg = Calc(date)
@@ -16,7 +17,9 @@ $(window).load(function() {
             $(this).addClass("prime")
         }
     });
-});
+
+    $("td").removeClass("fc-today");
+}
 
 function Calc(date) {
     var num = date.replace( /-/g , "" );
@@ -25,11 +28,11 @@ function Calc(date) {
         return false;
     } else {
         for(i = 2; i < num; i++) {
-            if(Math.sqrt(i) > num ) {
+            if( num % i === 0 ) {
+                return false
+            }else if(Math.sqrt(i) > num ) {
                 return false;
                 break;
-            }else if( num % i === 0 ) {
-                return false
             }
         }
         return true;
